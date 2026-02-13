@@ -82,9 +82,16 @@ function convertTemp() {
                     u1 = "Réaumur";
 			   }
 			   
-			   alert("Temperature is "+t1+" in "+u1);
-			});
-		});
+			   $("#result").html(
+                "Temperature is <strong>" +
+                result.value +
+                "</strong> in <strong>" +
+                result.unit +
+                "</strong>"
+);
+        });
+    })
 	</script>
 </body>
 </html>
+

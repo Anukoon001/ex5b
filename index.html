@@ -32,7 +32,27 @@
 	</div>
 	
 	<script>
-	    $(document).ready(function(){
+	    function validateTemperature(temp) {
+    if (temp === "" || isNaN(temp)) {
+        return false;
+    }
+    return true;
+}
+
+// ฟังก์ชันหลัก
+function convertTemp() {
+    let temp = document.getElementById("tempInput").value;
+
+    // เรียกใช้ function validate
+    if (!validateTemperature(temp)) {
+        alert("Please enter a valid number");
+        return;
+    }
+
+    let result = (temp * 9/5) + 32;
+    document.getElementById("result").innerText = result;
+}
+		$(document).ready(function(){
 			$("button").click(function(){
 			   var t = Number($('#temp').val());//celsius
 			   var u = $('#unit').val();

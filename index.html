@@ -29,69 +29,59 @@
 		</form>
 	</div>
 	<div id="result" style="margin-top:10px;margin-left:10px; font-size: 20px; color:red;">
-	</div>
-	
-	<script>
-	    function validateTemperature(temp) {
-    if (temp === "" || isNaN(temp)) {
-        return false;
+    </div>
+<script>
+        function validateTemperature(t) {
+        if (isNaN(t)) {
+            alert("Please verify whether the temperature value is correct!!!");
+            return false;
+        }
+
+        if (!(t >= -100 && t <= 100)) {
+            alert("Tempurature entered (in Celsius) must be between -100 and 100 C'");
+            return false;
+        }
+
+        return true;
     }
-    return true;
-}
+     function convertTemperature(t, u) {
+        var t1;
+        var u1;
 
+        if (u == "F") {
+            t1 = t * (9/5) + 32;
+            u1 = "Fahrenheit";
+        } else if (u == "K") {
+            t1 = t + 273.15;
+            u1 = "Kelvin";
+        } else if (u == "R") {
+            t1 = t * (4/5);
+            u1 = "Réaumur";
+        }
 
-function convertTemp() {
-    let temp = document.getElementById("tempInput").value;
-
-
-    if (!validateTemperature(temp)) {
-        alert("Please enter a valid number");
-        return;
+        return {
+            value: t1,
+            unit: u1
+        };
     }
-
-    let result = (temp * 9/5) + 32;
-    document.getElementById("result").innerText = result;
-}
-		$(document).ready(function(){
-			$("button").click(function(){
-			   var t = Number($('#temp').val());
-			   var u = $('#unit').val();
-			   
-			   if(isNaN(t)){
-					msg = "Please verify whether the temperature value is correct!!";
-					alert(msg);
-					return;
-			   }
-			   if(!(t >= -100 && t <= 100)){
-					msg = "Tempurature entered (in Celsius) must be between 0 and 100 C'";
-					alert(msg);
-					return;
-			   }
-			   
-			   var t1;
-			   var u1;
-			   
-			   if(u == "F"){
-					t1 = t * (9/5) + 32;
-					u1 = "Fahrenheit";
-			   }else if(u == "K"){
-					t1 =  t + 273.15;
-					u1 = "Kelvin";
-			   }else if(u == "R"){
-					t1 = t * (4/5);
-                    u1 = "Réaumur";
-			   }
-			   
-			   $("#result").html(
-                "Temperature is <strong>" +
-                result.value +
-                "</strong> in <strong>" +
-                result.unit +
-                "</strong>"
+    $(document).ready(function(){
+        $("button").click(function(){
+            var t = Number($('#temp').val());
+            var u = $('#unit').val();
+            if (!validateTemperature(t)) {
+                return;
+            }
+            var result = convertTemperature(t, u);
+            $("#result").html(
+    "Temperature is <strong>" +
+    result.value +
+    "</strong> in <strong>" +
+    result.unit +
+    "</strong>"
 );
         });
-    })
-	</script>
+    });
+</script>
 </body>
 </html>
 

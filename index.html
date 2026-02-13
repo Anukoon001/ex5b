@@ -39,11 +39,11 @@
     return true;
 }
 
-// ฟังก์ชันหลัก
+
 function convertTemp() {
     let temp = document.getElementById("tempInput").value;
 
-    // เรียกใช้ function validate
+
     if (!validateTemperature(temp)) {
         alert("Please enter a valid number");
         return;
@@ -54,11 +54,11 @@ function convertTemp() {
 }
 		$(document).ready(function(){
 			$("button").click(function(){
-			   var t = Number($('#temp').val());//celsius
+			   var t = Number($('#temp').val());
 			   var u = $('#unit').val();
 			   
 			   if(isNaN(t)){
-					msg = "Please verify whether the temperature value is correct!!!";
+					msg = "Please verify whether the temperature value is correct!!";
 					alert(msg);
 					return;
 			   }
